@@ -6,6 +6,10 @@ from .models import Consulta
 
 @receiver(pre_save, sender=Consulta)
 def crear_consulta_control(sender, instance, **kwargs):
+    """Verifica si una consulta requiere control, y de ser así
+    crea una nueva consulta automáticamente para dentro de 25 dias
+    a la misma hora, con el mismo profesional"""
+
     print("****** Creando consulta control")
 
     if instance.pk:

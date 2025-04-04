@@ -12,7 +12,9 @@ class MascotaListView(ListView):
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        return Mascota.objects.exclude(estado=EstadoMascotaChoices.FALLECIDO)
+        return Mascota.objects.exclude(estado=EstadoMascotaChoices.FALLECIDO).order_by(
+            "-created_at"
+        )
 
 
 class MascotaDetailView(DetailView):
