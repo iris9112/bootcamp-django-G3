@@ -1,0 +1,18 @@
+[run]
+omit =
+    */migrations/*
+    */tests/*
+    manage.py
+    .venv/*
+    */admin.py
+    */apps.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __str__
+    if __name__ == .__main__.:
+    raise NotImplementedError
+
+[html]
+directory = coverage_html_report

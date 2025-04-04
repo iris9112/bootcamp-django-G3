@@ -8,6 +8,7 @@ pillow==11.2.0
 
 # dev tools
 black==25.1.0
+coverage==7.8.0
 ipdb==0.13.13
 ipython==8.18.1
 django-extensions==3.2.3

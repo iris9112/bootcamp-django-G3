@@ -79,9 +79,25 @@ black .
 black --check .
 ```
 
-## Testing
-test:
-python manage.py test -v
+## Coverage
 
-test-one:
-python manage.py test -v TEST_NAME
+1. Instalar coverage `pip install coverage`
+2. Crear un archivo de configuración opcional (.coveragerc), debe ir en la raíz del proyecto (junto a manage.py). Esto es útil para ignorar archivos como los de migraciones o el entorno virtual.
+3. Usar coverage para correr tus pruebas `coverage run manage.py test`
+4. Ver reporte en consola `coverage report`
+5. Generar reporte HTML (más visual) `coverage html`
+
+## Testing
+
+Para ver el detalle de los test, ve a la rama `feature/testing`
+
+✅ Ejecutar la suite de pruebas de la aplicación
+`python manage.py test`
+
+✅ Ejecutar solo una clase de test
+Supongamos que estás en el directorio raíz del proyecto, y tu clase está en appointments/tests.py. Puedes correr solo ConsultaModelTest con:
+`python manage.py test appointments.tests.ConsultaModelTest`
+
+✅ Ejecutar solo un método de test
+Para correr solo `test_crear_consulta` dentro de `ConsultaModelTest`, usa:
+`python manage.py test appointments.tests.ConsultaModelTest.test_crear_consulta`
