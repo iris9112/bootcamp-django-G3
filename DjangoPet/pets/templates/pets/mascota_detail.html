@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle de Mascota{% endblock %}
+
+{% block content %}
+    <section class="py-5 border-bottom" id="features">
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Mascota</h2>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <div class="card mb-5 mb-xl-0">
+                        <div class="card-body p-5 text-center">
+
+                            {% if mascota.foto %}
+                                <img src="{{ mascota.foto.url }}" class="img-fluid rounded-circle mb-4"
+                                     alt="{{ mascota.nombre }}" style="max-height: 200px;">
+                            {% endif %}
+
+                            <ul class="list-unstyled mb-4 text-start">
+                                <li class="mb-2">
+                                    <strong>Nombre:</strong> {{ mascota.nombre }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Propietario:</strong> {{ mascota.propietario_nombre }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Especie:</strong> {{ mascota.especie }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Raza:</strong> {{ mascota.raza }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Género:</strong> {{ mascota.get_genero_display }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Color:</strong> {{ mascota.color }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Peso:</strong> {{ mascota.peso }} kg
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Fecha de nacimiento:</strong> {{ mascota.fecha_nacimiento|date:"d/m/Y"|default:"N/A" }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Edad:</strong> {{ mascota.edad_categoria }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Esterilizado:</strong>
+                                    {% if mascota.esterilizado %}
+                                        <i class="bi bi-check2-square"></i> Sí
+                                    {% else %}
+                                        <i class="bi bi-x"></i> No
+                                    {% endif %}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Microchip:</strong> {{ mascota.numero_microchip }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Último
+                                        control:</strong> {{ mascota.fecha_ultimo_control|date:"d/m/Y"|default:"N/A" }}
+                                </li>
+                                <li class="mb-2">
+                                    <strong>Estado:</strong> {{ mascota.get_estado_display }}
+                                </li>
+                            </ul>
+
+                            <div class="d-grid"><a class="btn btn-outline-primary" href="{% url 'pets:mascota_list' %}">Volver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

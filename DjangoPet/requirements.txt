@@ -1,0 +1,13 @@
+Django==4.2.20
+django-cors-headers==4.7.0  # https://pypi.org/project/django-cors-headers/
+django-dynamic-fixture==4.0.1  # https://pypi.org/project/django-dynamic-fixture/
+djangorestframework==3.16.0
+Faker==37.1.0  # https://github.com/joke2k/faker
+freezegun==1.5.1  # https://github.com/spulec/freezegun
+pillow==11.2.0
+
+# dev tools
+black==25.1.0
+ipdb==0.13.13
+ipython==8.18.1
+django-extensions==3.2.3

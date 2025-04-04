@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Veterinarios{% endblock %}
+
+{% block content %}
+    <section class="py-5 border-bottom" id="features">
+
+
+        <div class="container ">
+            <div class="text-center ">
+                {% if is_paginated %}
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; primera</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+
+                {% if messages %}
+                    <p>Se detectaron mensajes</p>
+                    <div class="container mt-3">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <h2 class="fw-bolder">Veterinarios</h2>
+                <p class="lead mb-0">Conoce nuestros expertos</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                {% for veterinario in veterinarios %}
+                    <div class="col-lg-4 col-md-6"><br>
+                        <div class="card mb-5 mb-xl-0">
+                            <div class="card-body p-5">
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2">
+                                        <strong>{{ veterinario.usuario.first_name }} {{ veterinario.usuario.last_name }}</strong>
+                                    </li>
+                                    <li class="mb-2">
+                                        Disponible?
+                                        {% if veterinario.activo %}
+                                            <i class="bi bi-check2-square"></i>Si
+                                        {% else %}
+                                            <i class="bi bi-x"></i>No
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                                <div class="d-grid"><a class="btn btn-outline-primary"
+                                                       href="{{ veterinario.get_absolute_url }}">Ver
+                                    detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        <div class="row gx-5 justify-content-center"></div>
+                    {% endif %}
+                {% empty %}
+                    <p>No hay veterinarios disponibles.</p>
+                {% endfor %}
+
+                <div class="container px-5 my-5">
+                    <hr>
+                    <div class="text-center mb-5">
+                        <p class="lead mb-0">¿Quieres ser parte?</p><br>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'users:veterinario_create' %}">Registrate</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+{% endblock %}

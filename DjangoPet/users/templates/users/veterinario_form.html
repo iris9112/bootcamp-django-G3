@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Veterinarios{% endblock %}
+
+{% block content %}
+
+    <section class="bg-light py-5">
+        <div class="container px-5 my-5 px-5">
+            <div class="text-center mb-5">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i>
+                </div>
+                <h2 class="fw-bolder">Regístrate</h2>
+                <p class="lead mb-0">Sé parte de nuestro equipo</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-6">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Mostrar errores del formulario -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>Errores en el formulario:</strong>
+                                <ul>
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ field }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        <!-- username input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.username.id_for_label }}"
+                                   name="{{ form.username.name }}" type="text"
+                                   value="{{ form.username.value|default:'' }}" required/>
+                            <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+                        </div>
+
+                        <!-- first_name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.first_name.id_for_label }}"
+                                   name="{{ form.first_name.name }}" type="text"
+                                   value="{{ form.username.value|default:'' }}" required/>
+                            <label for="{{ form.first_name.id_for_label }}">Nombre</label>
+                        </div>
+
+                        <!-- last_name input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.last_name.id_for_label }}"
+                                   name="{{ form.last_name.name }}" type="text"
+                                   value="{{ form.username.value|default:'' }}" required/>
+                            <label for="{{ form.last_name.id_for_label }}">Apellido</label>
+                        </div>
+
+                        <!-- identificacion input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.identificacion.id_for_label }}"
+                                   name="{{ form.identificacion.name }}" type="text"
+                                   value="{{ form.identificacion.value|default:'' }}" required/>
+                            <label for="{{ form.identificacion.id_for_label }}">Identificación</label>
+                        </div>
+
+                        <!-- email input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}"
+                                   type="email" value="{{ form.email.value|default:'' }}" required/>
+                            <label for="{{ form.email.id_for_label }}">Correo</label>
+                        </div>
+
+                        <!-- telefono input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.telefono.id_for_label }}"
+                                   name="{{ form.telefono.name }}" type="tel"
+                                   value="{{ form.telefono.value|default:'' }}" required/>
+                            <label for="{{ form.telefono.id_for_label }}">Teléfono</label>
+                        </div>
+
+                        <!-- especializacion input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="{{ form.especializacion.id_for_label }}"
+                                   name="{{ form.especializacion.name }}" type="text"
+                                   value="{{ form.especializacion.value|default:'' }}" required/>
+                            <label for="{{ form.especializacion.id_for_label }}">Especialización</label>
+                        </div>
+
+                        <!-- disponibilidad input-->
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="{{ form.disponibilidad.id_for_label }}"
+                                      name="{{ form.disponibilidad.name }}" style="height: 10rem"
+                                      required>{{ form.disponibilidad.value|default:'' }}</textarea>
+                            <label for="{{ form.disponibilidad.id_for_label }}">Disponibilidad</label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

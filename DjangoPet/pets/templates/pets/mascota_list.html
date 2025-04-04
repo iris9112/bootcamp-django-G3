@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Veterinarios{% endblock %}
+
+{% block content %}
+    <section class="py-5 border-bottom" id="features">
+
+
+        <div class="container ">
+            <div class="text-center ">
+                {% if is_paginated %}
+
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; primera</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <div class="container px-5 my-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">Mascotas</h2>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                {% for mascota in mascotas %}
+                    <div class="col-lg-4 col-md-6"><br>
+                        <div class="card mb-5 mb-xl-0">
+                            <div class="card-body p-5">
+                                <ul class="list-unstyled mb-4">
+                                    <li class="mb-2">
+                                        <strong>{{ mascota.especie }}: {{ mascota.nombre }}</strong>
+                                    </li>
+                                    <li class="mb-2">
+                                        esterilizado?
+                                        {% if mascota.esterilizado %}
+                                            <i class="bi bi-check2-square"></i>Si
+                                        {% else %}
+                                            <i class="bi bi-x"></i>No
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                                <div class="d-grid"><a class="btn btn-outline-primary"
+                                                       href="{{ mascota.get_absolute_url }}">Ver
+                                    detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        <div class="row gx-5 justify-content-center"></div>
+                    {% endif %}
+                {% empty %}
+                    <p>No hay Mascotas actualmente.</p>
+                {% endfor %}
+            </div>
+    </section>
+{% endblock %}
