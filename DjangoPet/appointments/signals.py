@@ -10,8 +10,6 @@ def crear_consulta_control(sender, instance, **kwargs):
     crea una nueva consulta automáticamente para dentro de 25 dias
     a la misma hora, con el mismo profesional"""
 
-    print("****** Creando consulta control")
-
     if instance.pk:
         # Recuperar el estado anterior desde la BD
         old_instance = Consulta.objects.get(pk=instance.pk)
