@@ -4,9 +4,11 @@ django-dynamic-fixture==4.0.1  # https://pypi.org/project/django-dynamic-fixture
 djangorestframework==3.16.0
 Faker==37.1.0  # https://github.com/joke2k/faker
 freezegun==1.5.1  # https://github.com/spulec/freezegun
-pillow==11.2.0
 celery==5.5.0
 redis==3.5.3
+flower==2.0.1
+django-celery-beat==2.7.0
+django-celery-results==2.5.1
 
 # django-redis==5.0.0
 # django-celery-beat==2.6.0

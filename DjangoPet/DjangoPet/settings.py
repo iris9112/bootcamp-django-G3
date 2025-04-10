@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # Third Party apps
     'django_extensions',
     'corsheaders',
+    'django_celery_beat',
+    'django_celery_results',
 
     # local apps
     'users',
@@ -157,3 +159,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Celery
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = "django-db"
